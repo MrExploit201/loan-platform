@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Apply Loan</title>
+<style>
+body{font-family:Arial;background:#f5f5f5}
+.container{max-width:400px;margin:auto;padding:20px;background:#fff}
+input{width:100%;padding:10px;margin:10px 0}
+button{width:100%;padding:10px;background:#0a2540;color:#fff;border:none}
+</style>
+</head>
 
+<body>
+
+<div class="container">
+<h2>Apply Loan</h2>
+
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="income" placeholder="Income">
+
+<button onclick="saveLead()">Submit</button>
+</div>
+
+<script>
+function saveLead(){
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let income = document.getElementById("income").value;
+
+    let leads = JSON.parse(localStorage.getItem("leads")) || [];
+    leads.push({name, phone, income});
+
+    localStorage.setItem("leads", JSON.stringify(leads));
+
+    alert("Application Submitted!");
+    window.location.href="dashboard.html";
+}
+</script>
+
+</body>
+</html>
