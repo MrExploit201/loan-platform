@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<style>
+body{font-family:Arial;background:#f4f4f4}
+.container{padding:20px}
+.card{background:#fff;padding:10px;margin:10px;border-radius:8px}
+button{padding:10px;background:red;color:#fff;border:none}
+</style>
+</head>
 
+<body>
+
+<div class="container">
+<h2>Admin Dashboard</h2>
+
+<div id="leads"></div>
+
+<button onclick="clearData()">Clear All Leads</button>
+</div>
+
+<script>
+function loadLeads(){
+    let leads = JSON.parse(localStorage.getItem("leads")) || [];
+    let html="";
+
+    leads.forEach(l=>{
+        html += `<div class="card">${l.name} - ${l.phone} - ₹${l.income}</div>`;
+    });
+
+    document.getElementById("leads").innerHTML = html;
+}
+
+function clearData(){
+    localStorage.removeItem("leads");
+    loadLeads();
+}
+
+loadLeads();
+</script>
+
+</body>
+</html>
